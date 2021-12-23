@@ -34,6 +34,10 @@ func main() {
 	deck.saveToFile(("deck"))
 
 	fmt.Println(newDeckFromFile("deck").toString())
+
+	deck.shuffle()
+
+	fmt.Println(deck)
 }
 
 func newCard() string {

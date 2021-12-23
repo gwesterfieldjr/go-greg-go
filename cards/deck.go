@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"strings"
+	"time"
 )
 
 // create a new type of deck
@@ -32,6 +34,7 @@ func newDeckFromFile(filePath string) deck {
 	return deck(s)
 }
 
+// receiver functions
 func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
@@ -43,6 +46,16 @@ func (d deck) saveToFile(filePath string) error {
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
+	}
+}
+
+func (d deck) shuffle() {
+	// generate new random seed based on time
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }
 
