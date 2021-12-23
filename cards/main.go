@@ -13,16 +13,21 @@ func main() {
 	fmt.Println(card)
 
 	// slice
-	cards := []string{newCard(), card, "Two of Hearts"}
+	// cards := []string{newCard(), card, "Two of Hearts"}
+	cards := deck{newCard(), card, "Two of Hearts"}
 
 	fmt.Println(cards)
 
 	cards = append(cards, "Six of Spades")
 
-	// loop index, value
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
+	cards.print()
+
+	deck := newDeck()
+	deck.print()
+
+	hand, remainingCards := deal(deck, 5)
+	hand.print()
+	remainingCards.print()
 }
 
 func newCard() string {
