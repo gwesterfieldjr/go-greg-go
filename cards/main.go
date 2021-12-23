@@ -28,6 +28,12 @@ func main() {
 	hand, remainingCards := deal(deck, 5)
 	hand.print()
 	remainingCards.print()
+
+	fmt.Println(deck.toString())
+
+	deck.saveToFile(("deck"))
+
+	fmt.Println(newDeckFromFile("deck").toString())
 }
 
 func newCard() string {
